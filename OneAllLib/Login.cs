@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,8 +12,10 @@ namespace OneAllLib
 {
   public static class Login
   {
-    static async Task<string> AuthenticateApplication(string domain)
+    public static async Task<string> AuthenticateApplication(string domain)
     {
+
+
       var url = "http://localhost:1234/login/";
 
       var loginForm = @"<html><head>
@@ -45,8 +49,11 @@ namespace OneAllLib
       listener.Start();
 
       // start browser
-      var process = System.Diagnostics.Process.Start(url);
+     // var process = System.Diagnostics.Process.Start(url);
 
+      IWebDriver driver = new ChromeDriver();
+      
+      driver.Url = url;
       
       
       //serve login form
